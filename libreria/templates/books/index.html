@@ -1,0 +1,46 @@
+{% extends "base.html"%}
+{% block title %} Book List {% endblock %}
+
+{% block container %} 
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-success" role="button" href="{% url 'add' %}">Add Book</a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Books</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Images</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>
+                        
+                         <img src="{{ book.image.url}}" height="100" width="200"/>   
+                        
+                        </td>
+                        <td>{{ book.description }}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-warning" href="{% url 'edit' book.id %}" role="button">Edit</a>
+                            |
+                            <a name="" id="" class="btn btn-danger" href="{% url 'delete' book.id %}" role="button">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+{% endblock %}
